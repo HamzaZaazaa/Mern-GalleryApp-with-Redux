@@ -87,43 +87,5 @@ userroute.get("/me", userAuth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-//
-//
-//
-//
-// finding a user
-userroute.get("/getuser", async (req, res) => {
-  try {
-    const user = await Usercontact.find();
-    res.status(200).send({ msg: "got users", user });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-// updating a user
-userroute.put("/edituser/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, lastname, email, password } = req.body;
-  try {
-    const user = await Usercontact.findByIdAndUpdate(id, {
-      $set: { name, lastname, email, password },
-    });
-    res.status(200).send({ msg: "user edited", user });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-// deleting a user
-userroute.delete("/deleteuser/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await Usercontact.findByIdAndDelete(id);
-    res.status(200).send({ msg: "Deleted user" });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 module.exports = userroute;
