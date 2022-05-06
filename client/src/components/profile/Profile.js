@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
+import "./Profile.css";
 function Profile() {
+  const user = useSelector((state) => state.authReducer.user);
   return (
     <div>
       <div className='row py-5 px-4'>
@@ -11,17 +13,20 @@ function Profile() {
               <div className='media align-items-end profile-header'>
                 <div className='profile mr-3'>
                   <img
-                    src=''
+                    src='https://icon-library.com/images/unknown-person-icon/unknown-person-icon-4.jpg'
                     alt='...'
                     width={130}
                     className='rounded mb-2 img-thumbnail'
                   />
-                  <a href='#' className='btn btn-dark btn-sm btn-block'>
-                    Edit profile
+                  <a href='#' className='btn btn-light btn-sm btn-block'>
+                    {/* Click to change or add name, lastname, email, profile photo, password */}
+                    Edit Profile
                   </a>
                 </div>
                 <div className='media-body mb-5 text-white'>
-                  <h4 className='mt-0 mb-0'>USER NAME</h4>
+                  {/* User Name & LastName*/}
+                  <h4 className='mt-0 mb-0'>{user && user.name}</h4>
+                  <h4 className='mt-0 mb-0'>{user && user.lastname}</h4>
                 </div>
               </div>
             </div>
@@ -29,6 +34,7 @@ function Profile() {
               <ul className='list-inline mb-0'>
                 <li className='list-inline-item'>
                   <h5 className='font-weight-bold mb-0 d-block'>
+                    {/* How many photos the user has */}
                     Number of photos
                   </h5>
                   <small className='text-muted'>
@@ -41,8 +47,10 @@ function Profile() {
             </div>
             <div className='py-4 px-4'>
               <div className='d-flex align-items-center justify-content-between mb-3'>
+                {/* Show some of the user photos */}
                 <h5 className='mb-0'>Recent photos</h5>
                 <a href='#' className='btn btn-link text-muted'>
+                  {/* Click to show user gallery */}
                   Show all
                 </a>
               </div>
@@ -79,6 +87,7 @@ function Profile() {
               <div className='py-4'>
                 <h5 className='mb-3'>BIO</h5>
                 <div className='p-4 bg-light rounded shadow-sm'>
+                  {/* Textarea for users  */}
                   <p className='font-italic mb-0'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna

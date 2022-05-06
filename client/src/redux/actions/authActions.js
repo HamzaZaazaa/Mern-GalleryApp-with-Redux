@@ -1,4 +1,4 @@
-import { FAILED, LOGIN, REGISTER } from "../types/authTypes";
+import { FAILED, IDENTIFIER, LOGIN, REGISTER } from "../types/authTypes";
 import axios from "axios";
 
 // navigate as params from handleSubmit function in Signup component
@@ -37,6 +37,25 @@ export const login = (data, navigate) => async (disptatch) => {
     navigate("/profile");
   } catch (error) {
     // failed action
+    disptatch({
+      type: FAILED,
+    });
+  }
+};
+// Identification
+export const identifier = () => async (disptatch) => {
+  const config = {
+    headers: {
+      authorized: localStorage.getItem("token"),
+    },
+  };
+  try {
+    const res = await axios.get("/api/auth/me", config);
+    disptatch({
+      type: IDENTIFIER,
+      payload: res.data,
+    });
+  } catch (error) {
     disptatch({
       type: FAILED,
     });

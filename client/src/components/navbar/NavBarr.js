@@ -14,6 +14,13 @@ function NavBarr() {
           <Link to='/' className='navbar-brand'>
             <p>MERN APP</p>
           </Link>
+          <ul className='navbar-nav ml-auto mr-md-3'>
+            <li className='nav-item'>
+              <Link to='/' className='nav-link'>
+                <p>Home</p>
+              </Link>
+            </li>
+          </ul>
           <div className='social-media order-lg-last'>
             <p className='mb-0 d-flex'>
               <a
