@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
+  usercomment: {
+    type: String,
+  },
   created: {
     type: Date,
     default: Date.now,
   },
-  updated: {
-    type: Date,
-  },
-  userId: {
-    // Which user is commenting
-    type: Schema.Types.ObjectId,
-    ref: "userSchema",
-  },
-  posterId: {
-    // Which post user commented on
-    type: Schema.Types.ObjectId,
-    ref: "posterSchema",
+  user:
+    // buidling relation with userSchema
+    [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+  poster: {
+    // building relation with posterSchema
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "poster",
   },
 });
 // Collection comment(s) exported...

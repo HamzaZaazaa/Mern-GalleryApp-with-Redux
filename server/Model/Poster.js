@@ -5,17 +5,13 @@ const posterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
-    // userid from UserSchema id...
-    type: Schema.Types.ObjectId,
-    ref: "userSchema",
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
   },
   created: {
     type: Date,
     default: Date.now,
-  },
-  updated: {
-    type: Date,
   },
 });
 // Collection poster(s) exported...
