@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const commentSchema = new mongoose.Schema({
   usercomment: {
     type: String,
+    required: true,
   },
   created: {
     type: Date,
@@ -10,7 +11,7 @@ const commentSchema = new mongoose.Schema({
   },
   user:
     // buidling relation with userSchema
-    [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+    { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   poster: {
     // building relation with posterSchema
     type: mongoose.Schema.Types.ObjectId,
