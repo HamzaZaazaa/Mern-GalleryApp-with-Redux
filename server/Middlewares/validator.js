@@ -1,6 +1,6 @@
 const { body, validationResult } = require("express-validator");
 
-// Required inputs in the form
+// Required inputs in the signup form
 const requirements = [
   body("name", "Name is required!").notEmpty(),
   body("lastname", "Lastname is required!").notEmpty(),
@@ -9,6 +9,7 @@ const requirements = [
     min: 8,
   }),
 ];
+// Required inputs in the login form
 const signinRequirements = [
   body("email", "unvalid email").isEmail(),
   body("email", "Email is required").notEmpty(),

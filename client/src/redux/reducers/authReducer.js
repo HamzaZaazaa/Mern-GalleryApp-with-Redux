@@ -1,4 +1,10 @@
-import { FAILED, IDENTIFIER, LOGIN, REGISTER } from "../types/authTypes";
+import {
+  FAILED,
+  IDENTIFIER,
+  LOGIN,
+  LOGOUT,
+  REGISTER,
+} from "../types/authTypes";
 
 const initialState = {
   auth: false,
@@ -26,7 +32,9 @@ const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
       };
     case FAILED:
-      // when failed remove token from local storage
+    // remove token on logout
+    case LOGOUT:
+      // on logout or failed remove token
       localStorage.removeItem("token");
       return {
         ...state,

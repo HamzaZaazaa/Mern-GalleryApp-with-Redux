@@ -76,7 +76,6 @@ function Signup() {
         </div>
         <div className='input-container ic2'>
           <input
-            id='email'
             className='input'
             type='password'
             placeholder='password '

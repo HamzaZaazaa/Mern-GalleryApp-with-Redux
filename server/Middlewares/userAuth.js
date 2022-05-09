@@ -13,7 +13,7 @@ const userAuth = async (req, res, next) => {
     // confirming user id from token data (token data has the user id)
     // request recieved from the token which has the user id
     req.user = {
-      id: token.id,
+      id: decode.id,
     };
     next();
   } catch (error) {

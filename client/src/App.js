@@ -7,6 +7,8 @@ import Profile from "./components/profile/Profile";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { identifier } from "./redux/actions/authActions";
+import PrivateRoute from "./routing/PrivateRoute";
+import Error from "./Attachments/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,11 +19,19 @@ function App() {
   return (
     <div>
       <NavBarr />
+      <Error />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route
+          path='/profile'
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

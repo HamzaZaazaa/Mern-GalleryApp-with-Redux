@@ -1,5 +1,12 @@
-import { FAILED, IDENTIFIER, LOGIN, REGISTER } from "../types/authTypes";
+import {
+  FAILED,
+  IDENTIFIER,
+  LOGIN,
+  LOGOUT,
+  REGISTER,
+} from "../types/authTypes";
 import axios from "axios";
+import { setAlert } from "./alertActions";
 
 // navigate as params from handleSubmit function in Signup component
 // dispatch from middleware
@@ -16,6 +23,9 @@ export const register = (data, navigate) => async (disptatch) => {
     // navigate only after success
     navigate("/profile");
   } catch (error) {
+    error.response.data.errors.forEach((err) =>
+      disptatch(setAlert(err.message, "danger"))
+    );
     // failed action
     disptatch({
       type: FAILED,
@@ -36,6 +46,9 @@ export const login = (data, navigate) => async (disptatch) => {
     // navigate only after success
     navigate("/profile");
   } catch (error) {
+    error.response.data.errors.forEach((err) =>
+      disptatch(setAlert(err.message, "danger"))
+    );
     // failed action
     disptatch({
       type: FAILED,
@@ -60,4 +73,10 @@ export const identifier = () => async (disptatch) => {
       type: FAILED,
     });
   }
+};
+// LOG OUT
+export const logout = () => {
+  return {
+    type: LOGOUT,
+  };
 };

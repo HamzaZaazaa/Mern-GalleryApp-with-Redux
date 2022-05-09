@@ -30,11 +30,18 @@ const userSchema = new mongoose.Schema({
   updated: {
     type: Date,
   },
-  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "poster" }],
-  Comment: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "comment",
-  },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "poster",
+    },
+  ],
+  Comment: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "comment",
+    },
+  ],
   // roles need managment to build the admin back office
   Role: ["User", "Admin"],
 });

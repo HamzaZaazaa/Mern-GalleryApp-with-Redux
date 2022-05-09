@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./Profile.css";
 function Profile() {
+  // take user from reducer
   const user = useSelector((state) => state.authReducer.user);
   return (
     <div>
       <div className='row py-5 px-4'>
         <div className='col-xl-4 col-md-6 col-sm-10 mx-auto'>
-          {/* Profile widget */}
           <div className='bg-white shadow rounded overflow-hidden'>
             <div className='px-4 pt-0 pb-4 bg-dark'>
               <div className='media align-items-end profile-header'>

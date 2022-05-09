@@ -41,6 +41,19 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+#logoutbtn {
+  margin-left: 80%;
+}
+#signupbtn {
+  margin-left: 700%;
+}
+#loginbtn {
+  margin-left: 850%;
+}
+#profilebtn {
+  margin-left: 850%;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

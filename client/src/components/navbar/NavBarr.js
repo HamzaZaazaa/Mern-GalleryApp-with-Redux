@@ -1,9 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./NavBarr.css";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/actions/authActions";
 
 function NavBarr() {
+  // take the inital state which is false
+  const auth = useSelector((state) => state.authReducer.auth);
+  const disptach = useDispatch();
+  // Logout function
+  const handleLogOut = () => {
+    disptach(logout());
+  };
   return (
     <div>
       <nav
@@ -17,7 +27,7 @@ function NavBarr() {
           <ul className='navbar-nav ml-auto mr-md-3'>
             <li className='nav-item'>
               <Link to='/' className='nav-link'>
-                <p>Home</p>
+                <Button variant='dark'>Home</Button>
               </Link>
             </li>
           </ul>
@@ -55,18 +65,32 @@ function NavBarr() {
             <span className='fa fa-bars' /> Menu
           </button>
           <div className='collapse navbar-collapse' id='ftco-nav'>
-            <ul className='navbar-nav ml-auto mr-md-3'>
-              <li className='nav-item'>
+            {auth ? (
+              <>
+                <Link to='/profile'>
+                  <Button variant='dark' id='profilebtn'>
+                    Profile
+                  </Button>
+                </Link>
+                <Button variant='dark' id='logoutbtn' onClick={handleLogOut}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
                 <Link to='/login' className='nav-link'>
-                  <p>Login</p>
+                  <Button variant='dark' id='loginbtn'>
+                    Login
+                  </Button>
                 </Link>
-              </li>
-              <li className='nav-item'>
+
                 <Link to='/signup' className='nav-link'>
-                  <p>Register</p>
+                  <Button variant='dark' id='signupbtn'>
+                    SignUp
+                  </Button>
                 </Link>
-              </li>
-            </ul>
+              </>
+            )}
           </div>
         </div>
       </nav>
