@@ -2,13 +2,13 @@ const express = require("express");
 const app = express();
 const connectDb = require("./server/config/connectDb");
 const auth = require("./server/auth/auth");
-const usercomment = require("./server/routes/commentRoute");
+const posterroute = require("./server/routes/posterroute");
 // reading JSON format
 app.use(express.json());
 
 // routing after /api/users
 app.use("/api/auth", auth);
-app.use("/api/social", usercomment);
+app.use("/api/profile", posterroute);
 
 // function to connect database to the server
 connectDb();

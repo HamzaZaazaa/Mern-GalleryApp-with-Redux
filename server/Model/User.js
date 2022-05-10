@@ -23,27 +23,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
-  updated: {
-    type: Date,
-  },
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "poster",
-    },
-  ],
   Comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "comment",
     },
   ],
-  // roles need managment to build the admin back office
-  Role: ["User", "Admin"],
+  postTitle: String,
 });
 // Collection user(s) exported...
 module.exports = Schema = mongoose.model("user", userSchema);

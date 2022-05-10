@@ -2,11 +2,11 @@ import React from "react";
 
 function Loader() {
   return (
-    <div class='container'>
-      <div class='yellow'></div>
-      <div class='red'></div>
-      <div class='blue'></div>
-      <div class='violet'></div>
+    <div className='container'>
+      <div className='yellow'></div>
+      <div className='red'></div>
+      <div className='blue'></div>
+      <div className='violet'></div>
     </div>
   );
 }

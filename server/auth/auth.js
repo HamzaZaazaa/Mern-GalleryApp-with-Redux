@@ -1,6 +1,4 @@
 const express = require("express");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
 const userroute = express.Router();
 const Usercontact = require("../Model/User");
 const bcrypt = require("bcrypt");
