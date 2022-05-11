@@ -5,7 +5,9 @@ const userAuth = async (req, res, next) => {
   try {
     if (!token) {
       // respone status (401 not authorized)
-      res.status(401).send({ errors: [{ message: "You are not authorized" }] });
+      return res
+        .status(401)
+        .send({ errors: [{ message: "You are not authorized" }] });
     }
     // verifying token
     const decode = jwt.verify(token, process.env.privateKey);

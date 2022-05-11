@@ -1,8 +1,42 @@
-body {
-    background-image: url(https://color-hex.org/colors/15172b.png);
+
+.profilecover {
+    background-color: #1A132F;
 }
-h4 {
-    color: white;
+.userprofile {
+    margin-right: 2%;
+}
+.profilepic {
+    width: 100%;
+}
+.uploadingforProfile{
+    padding: 3%;
+    background: rgb(56, 56, 56); 
+    display: table;
+    color: #fff;
+    margin-left: 30%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.uploadingforProfile:hover {
+    background-color:rgb(31, 35, 36);
+    color: rgb(94, 129, 226);
+}
+input[type="file"] {
+    display: none;
+}
+.uploadpicbtn {
+    color: rgb(5, 146, 17);
+    width: 100px;
+    margin-left: 34%;
+    margin-top: 2%;
+}
+.uploadpicbtn:hover {
+    background-color: rgb(47, 52, 54);
+    color: rgb(94, 129, 226);
+}
+#profilefirstname {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: oblique;
+}
+#profilelastname {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-

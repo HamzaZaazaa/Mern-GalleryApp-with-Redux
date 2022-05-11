@@ -1,5 +1,5 @@
 import React from "react";
-import "./Login.css";
+import "./login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -59,7 +59,7 @@ function Login() {
             Sign in
           </button>
           <div className='subtitle'>Don't have an account yet!</div>
-          <Link to='/signup'>
+          <Link to='/signup' className='signinpara'>
             <p>Sign up</p>
           </Link>
         </div>

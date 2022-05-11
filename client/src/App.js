@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { identifier } from "./redux/actions/authActions";
 import PrivateRoute from "./routing/PrivateRoute";
 import Error from "./Attachments/Error";
-
 function App() {
   const dispatch = useDispatch();
   // in app to work in every component
