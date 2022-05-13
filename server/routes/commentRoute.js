@@ -1,20 +1,21 @@
 const express = require("express");
 const commentroute = express.Router();
 const Comment = require(".././Model/Comment");
+const userAuth = require("../Middlewares/userAuth");
 
-commentroute.post("/addcomment", async (req, res) => {
-  // comment from front
-  let { usercomment } = req.body;
+commentroute.post("/addcomment", userAuth, async (req, res) => {
   try {
-    // adding new comment
-    let comment = await new Comment({ usercomment });
+    const comment = new Comment({
+      usercomment: req.body.usercomment,
+      userId: req.user.id,
+    });
     // saving comment to database
     await comment.save();
     // response status (200 ok)
-    res.status(200).send("comment added successfully", comment);
+    res.status(200).send("comment added successfully");
   } catch (error) {
     // respone status (500 server error)
-    res.status(500).send(error);
+    res.status(500).send("Server Error");
   }
 });
 module.exports = commentroute;

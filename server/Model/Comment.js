@@ -9,7 +9,7 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  user:
+  userId:
     // buidling relation with userSchema
     { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   poster: {

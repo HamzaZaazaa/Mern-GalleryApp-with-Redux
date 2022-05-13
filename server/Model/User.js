@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema({
       ref: "comment",
     },
   ],
+  // User Profile Picture fieldname
   postTitle: String,
 });
 // Collection user(s) exported...

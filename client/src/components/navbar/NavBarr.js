@@ -8,7 +8,7 @@ import { logout } from "../../redux/actions/authActions";
 import alzaPic from "./AlzaLogonbg.png";
 
 const NavBarr = () => {
-  // take the inital state which is false
+  // take the initial state which is false
   const auth = useSelector((state) => state.authReducer.auth);
   const disptach = useDispatch();
   // Logout function
@@ -21,13 +21,13 @@ const NavBarr = () => {
         <Container>
           <img src={alzaPic} alt='' className='navbarLogo' />
           <Nav className='me-auto'>
-            <Link to='/' className='nav-link'>
-              <Button variant='outline-dark' id='homebtn'>
-                Home
-              </Button>
-            </Link>
             {auth ? (
               <>
+                <Link to='/gallery'>
+                  <Button variant='outline-warning' id='gallerybtn'>
+                    Gallery
+                  </Button>
+                </Link>
                 <Link to='/profile'>
                   <Button variant='outline-secondary' id='profilebtn'>
                     Profile
@@ -43,6 +43,11 @@ const NavBarr = () => {
               </>
             ) : (
               <>
+                <Link to='/' className='nav-link'>
+                  <Button variant='outline-dark' id='homebtn'>
+                    Home
+                  </Button>
+                </Link>
                 <Link to='/login' className='nav-link'>
                   <Button variant='outline-dark' id='loginbtn'>
                     LogIn

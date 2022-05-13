@@ -3,21 +3,21 @@
   width: 100px;
   height: 100px;
 }
-#logoutbtn {
-  margin-left: 370%;
-  height: 100%;
-}
-#profilebtn {
-  margin-left: 1200%;
-  height: 70%;
-}
 #homebtn {
-  margin-left: 50%;
-  
+  margin-left: 50%; 
 }
 #signupbtn {
   margin-left: 1100%;
 }
 #loginbtn {
   margin-left: 1300%;
+}
+#logoutbtn {
+  margin-left: 390%;
+}
+#profilebtn {
+  margin-left: 1200%;
+}
+#gallerybtn {
+  margin-left: 50%;
 }

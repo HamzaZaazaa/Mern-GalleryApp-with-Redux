@@ -4,6 +4,7 @@ import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Profile() {
   // take user from reducer
@@ -91,11 +92,13 @@ function Profile() {
             <div className='py-4 px-4'>
               <div className='d-flex align-items-center justify-content-between mb-3'>
                 {/* Show some of the user photos */}
-                <h5 className='mb-0'>Recent photos</h5>
-                <a href='#' className='btn btn-link text-muted'>
-                  {/* Click to show user gallery */}
-                  Show all
-                </a>
+                <h5 className='mb-0'>My photos</h5>
+                <Link to='/gallery'>
+                  <p className='btn btn-link text-muted'>
+                    {/* Click to show user gallery */}
+                    Show all
+                  </p>
+                </Link>
               </div>
               <div className='row'>
                 <div className='col-lg-6 mb-2 pr-lg-1'>

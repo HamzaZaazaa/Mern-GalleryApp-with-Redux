@@ -1,0 +1,18 @@
+.Modalbtn {
+    margin-left: 45%;
+    margin-top: 5%;
+}
+.uploadingapic {
+    background: rgb(49, 110, 223); 
+    display: table;
+    color: #fff;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10%;
+}
+.modalbody {
+    display: flex;
+}
+.modalinput {
+    width: 60%;
+    margin-left: 10%;
+}

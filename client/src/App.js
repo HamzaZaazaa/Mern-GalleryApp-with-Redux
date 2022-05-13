@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { identifier } from "./redux/actions/authActions";
 import PrivateRoute from "./routing/PrivateRoute";
 import Error from "./Attachments/Error";
+import Gallery from "./components/gallery/Gallery";
 function App() {
   const dispatch = useDispatch();
   // in app to work in every component
@@ -28,6 +29,14 @@ function App() {
           element={
             <PrivateRoute>
               <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='gallery'
+          element={
+            <PrivateRoute>
+              <Gallery />
             </PrivateRoute>
           }
         />

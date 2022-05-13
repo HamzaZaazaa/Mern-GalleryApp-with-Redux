@@ -5,6 +5,7 @@ const userAuth = require("../Middlewares/userAuth");
 const User = require("../Model/User");
 // userAuth middleware is giving an error
 // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+// change your profile picture
 router.put("/upload", userAuth, upload.single("myPic"), async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user.id, {
