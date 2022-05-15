@@ -10,6 +10,7 @@ router.post("/gallery", userAuth, upload.single("myPost"), async (req, res) => {
     const poster = new Poster({
       posterTitle: req.body.posterTitle,
       userId: req.user.id,
+      post: req.file.filename,
     });
     await poster.save();
     res.status(200).send("Poster added to gallery");

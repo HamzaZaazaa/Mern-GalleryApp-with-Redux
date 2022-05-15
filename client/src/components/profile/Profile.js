@@ -20,7 +20,7 @@ function Profile() {
       },
     };
     try {
-      const res = await axios.put("/api/profile/upload", data, config);
+      await axios.put("/api/profile/upload", data, config);
     } catch (error) {
       console.log(error);
     }
@@ -134,11 +134,7 @@ function Profile() {
                 <h5 className='mb-3'>BIO</h5>
                 <div className='p-4 bg-light rounded shadow-sm'>
                   {/* Textarea for users  */}
-                  <p className='font-italic mb-0'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam.
-                  </p>
+                  <p className='font-italic mb-0'>USER INPUT HERE</p>
                 </div>
               </div>
             </div>

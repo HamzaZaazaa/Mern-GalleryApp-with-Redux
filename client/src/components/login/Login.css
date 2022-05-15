@@ -20,6 +20,9 @@ html {
   color: blue;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+.signinpara:hover{
+  color: #dc2f55;
+ }
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;

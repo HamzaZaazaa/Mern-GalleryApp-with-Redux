@@ -24,7 +24,7 @@ const Signup = () => {
   };
   return (
     <div className='form'>
-      <div className='title'>Sign Up</div>
+      <div className='title'>SIGN UP</div>
       <div className='subtitle'>
         Already have an account!
         <Link to='/login' className='signuppara'>
@@ -40,6 +40,7 @@ const Signup = () => {
           placeholder='Your Name here '
           onChange={handleChange}
           name='name'
+          required
         />
         <div className='cut' />
         <label htmlFor='firstname' className='placeholder'>
@@ -55,6 +56,7 @@ const Signup = () => {
           placeholder='Your Last name here '
           onChange={handleChange}
           name='lastname'
+          required
         />
         <div className='cut cut-short' />
         <label htmlFor='email' className='placeholder'>
@@ -70,6 +72,7 @@ const Signup = () => {
           placeholder='Your Email here '
           onChange={handleChange}
           name='email'
+          required
         />
         <div className='cut cut-short' />
         <label htmlFor='email' className='placeholder'>
@@ -85,10 +88,12 @@ const Signup = () => {
           placeholder='Your Password here'
           onChange={handleChange}
           name='password'
+          required
+          minlength='8'
         />
       </div>
       <button type='text' className='submit' onClick={handleSubmit}>
-        submit
+        Submit
       </button>
     </div>
   );

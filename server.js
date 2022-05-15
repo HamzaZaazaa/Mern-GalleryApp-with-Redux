@@ -13,7 +13,7 @@ app.use("/api/auth", auth);
 app.use("/api/profile", posterroute);
 app.use("/api/post", galleryroute);
 app.use("/api/comments", commentroute);
-// function to connect database to the server
+// connect database to the server
 connectDb();
 // app running on port 9000
 const port = 9000;

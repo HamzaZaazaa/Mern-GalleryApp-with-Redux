@@ -32,7 +32,6 @@ const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
       };
     case FAILED:
-    // remove token on logout
     case LOGOUT:
       // on logout or failed remove token
       localStorage.removeItem("token");

@@ -1,7 +1,6 @@
 import { REMOVEALERT, SETALERT } from "../types/alertTypes";
 
 export const setAlert = (message, alertType) => (dispatch) => {
-  // generate random id
   const id = Math.random();
   dispatch({
     type: SETALERT,
@@ -16,5 +15,5 @@ export const setAlert = (message, alertType) => (dispatch) => {
       type: REMOVEALERT,
       payload: id,
     });
-  }, 5000);
+  }, 3000);
 };
