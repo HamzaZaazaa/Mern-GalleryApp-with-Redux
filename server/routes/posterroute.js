@@ -16,4 +16,5 @@ router.put("/upload", userAuth, upload.single("myPic"), async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 module.exports = router;

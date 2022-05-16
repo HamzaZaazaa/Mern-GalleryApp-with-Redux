@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageCard from "./ImageCard";
-import { Button, Modal } from "react-bootstrap";
+import { Button, FormControl, Modal } from "react-bootstrap";
 import "./gallery.css";
-import  axios  from "axios";
+import axios from "axios";
 
 const Gallery = () => {
   const [show, setShow] = useState(false);
@@ -10,11 +10,14 @@ const Gallery = () => {
   const handleShow = () => setShow(true);
   const [title, setTitle] = useState("");
   const [uploadpic, setUploadpic] = useState(null);
+  const [getposts, setGetposts] = useState([]);
+  const [postsearch, setPostsearch] = useState("");
 
+  // Uploading a new picture with a title
   const UploadingPic = async () => {
     const formData = new FormData();
     formData.append("myPost", uploadpic);
-    formData.append('posterTitle', title)
+    formData.append("posterTitle", title);
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
@@ -22,23 +25,37 @@ const Gallery = () => {
     };
     try {
       await axios.post("/api/post/gallery", formData, config);
-      alert("Your post was uploaded")
-      setTitle('')
-      handleClose()
+      setTitle("");
+      alert("Your post was uploaded");
+      handleClose();
     } catch (error) {
       console.log(error);
-      alert("Error uploading file")
+      alert("Could not upload file");
     }
   };
+  // get all posts
+  useEffect(() => {
+    axios
+      .get("/api/post/getall")
+      .then((res) => setGetposts(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  // Setting up title search
+  const posts = getposts.filter((getpost) => {
+    return getpost.posterTitle
+      .toLowerCase()
+      .includes(postsearch.toLowerCase().trim());
+  });
   return (
     <div>
       <Button variant='info' onClick={handleShow} className='Modalbtn'>
         Upload A Picture
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="modalTitle">SHOW THE WORLD YOUR ART</Modal.Title>
+          <Modal.Title className='modalTitle'>
+            SHOW THE WORLD YOUR ART
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className='modalbody'>
           <label className='uploadingapic'>
@@ -47,7 +64,9 @@ const Gallery = () => {
               type='file'
               size='60'
               name='post'
-              onChange={(e) => setUploadpic(e.target.files[0], e.preventDefault())}
+              onChange={(e) =>
+                setUploadpic(e.target.files[0], e.preventDefault())
+              }
               required
             />
           </label>
@@ -56,7 +75,7 @@ const Gallery = () => {
             placeholder='Picture Title'
             className='modalinput'
             name='posterTitle'
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             required
           ></input>
         </Modal.Body>
@@ -69,7 +88,18 @@ const Gallery = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ImageCard />
+      {/* Searching */}
+      <FormControl
+        type='search'
+        className='searchinput'
+        placeholder='Search!'
+        onChange={(e) => setPostsearch(e.target.value)}
+      ></FormControl>
+      <div className='imgcontainer'>
+        {posts.map((getpost) => (
+          <ImageCard getpost={getpost} key={getpost._id} />
+        ))}
+      </div>
     </div>
   );
 };

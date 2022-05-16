@@ -20,11 +20,12 @@ router.post("/gallery", userAuth, upload.single("myPost"), async (req, res) => {
   }
 });
 // find the post along with the user collection
-router.get("/getall", userAuth, async (req, res) => {
+router.get("/getall", async (req, res) => {
   try {
     const findposts = await Poster.find().populate("userId", [
       "name",
       "lastname",
+      "postTitle",
     ]);
     res.status(200).send(findposts);
   } catch (error) {
@@ -33,13 +34,13 @@ router.get("/getall", userAuth, async (req, res) => {
 });
 
 // update Poster title
-router.put("/updateTitle", userAuth, async (req, res)=>{
+router.put("/updateTitle", userAuth, async (req, res) => {
   try {
     await findByIdAndUpdate(req.poster.id, {
-      $set : {posterTitle: req.body.posterTitle}
-    })
+      $set: { posterTitle: req.body.posterTitle },
+    });
   } catch (error) {
-    res.status(500).send("Server Error")
+    res.status(500).send("Server Error");
   }
-})
+});
 module.exports = router;

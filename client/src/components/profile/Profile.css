@@ -5,9 +5,6 @@
 .userprofile {
     margin-right: 2%;
 }
-.profilepic {
-    width: 100%;
-}
 .uploadingforProfile{
     padding: 3%;
     background: rgb(56, 56, 56); 
@@ -39,4 +36,10 @@ input[type="file"] {
 }
 #profilelastname {
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.bio {
+    margin-right: 100%;
+}
+.userinput {
+    margin-right: 100%;
 }

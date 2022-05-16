@@ -1,3 +1,6 @@
+body {
+    background-color: #160042;
+}
 .Modalbtn {
     margin-left: 45%;
     margin-top: 5%;
@@ -23,4 +26,15 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin-left: 20%;
     color: rgb(82, 72, 72);
+}
+.imgcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10%;
+    justify-content: space-around;
+}
+.searchinput {
+    width: 30%;
+    margin-left: 36%;
+    margin-top: 5%;
 }
