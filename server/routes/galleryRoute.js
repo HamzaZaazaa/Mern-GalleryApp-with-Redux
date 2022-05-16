@@ -2,6 +2,7 @@ const express = require("express");
 const upload = require("../Middlewares/upload");
 const router = express.Router();
 const userAuth = require("../Middlewares/userAuth");
+const { findByIdAndUpdate } = require("../Model/Poster");
 const Poster = require("../Model/Poster");
 
 // Post a picture in gallery
@@ -30,4 +31,15 @@ router.get("/getall", userAuth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// update Poster title
+router.put("/updateTitle", userAuth, async (req, res)=>{
+  try {
+    await findByIdAndUpdate(req.poster.id, {
+      $set : {posterTitle: req.body.posterTitle}
+    })
+  } catch (error) {
+    res.status(500).send("Server Error")
+  }
+})
 module.exports = router;

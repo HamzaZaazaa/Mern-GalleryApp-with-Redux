@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, FormControl } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function ImageCard() {
-  const user = useSelector((state) => state.authReducer.user);
   return (
     <div>
       <Card style={{ width: "18rem" }}>

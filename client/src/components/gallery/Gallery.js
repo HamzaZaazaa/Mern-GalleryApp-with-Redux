@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImageCard from "./ImageCard";
 import { Button, Modal } from "react-bootstrap";
 import "./gallery.css";
-import { Axios } from "axios";
+import  axios  from "axios";
 
 const Gallery = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [title, setTitle] = useState({
-    posterTitle: "",
-  });
+  const [title, setTitle] = useState("");
   const [uploadpic, setUploadpic] = useState(null);
 
-  // input function
-  const handleTitle = (e) => {
-    setTitle({ ...title, [e.target.name]: e.target.value });
-  };
   const UploadingPic = async () => {
-    const data = new FormData();
-    data.append("myPost", uploadpic);
+    const formData = new FormData();
+    formData.append("myPost", uploadpic);
+    formData.append('posterTitle', title)
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
       },
     };
     try {
-      const res = await Axios.post("/api/post/gallery", data, config);
+      await axios.post("/api/post/gallery", formData, config);
+      alert("Your post was uploaded")
+      setTitle('')
+      handleClose()
     } catch (error) {
       console.log(error);
+      alert("Error uploading file")
     }
   };
   return (
@@ -39,16 +38,17 @@ const Gallery = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>SHOW THE WORLD YOUR ART</Modal.Title>
+          <Modal.Title className="modalTitle">SHOW THE WORLD YOUR ART</Modal.Title>
         </Modal.Header>
         <Modal.Body className='modalbody'>
           <label className='uploadingapic'>
-            Choose picture
+            Choose file
             <input
               type='file'
               size='60'
               name='post'
-              onChange={(e) => setUploadpic(e.target.files[0])}
+              onChange={(e) => setUploadpic(e.target.files[0], e.preventDefault())}
+              required
             />
           </label>
           <input
@@ -56,7 +56,8 @@ const Gallery = () => {
             placeholder='Picture Title'
             className='modalinput'
             name='posterTitle'
-            onChange={handleTitle}
+            onChange={e => setTitle(e.target.value)}
+            required
           ></input>
         </Modal.Body>
         <Modal.Footer>
