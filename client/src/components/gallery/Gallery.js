@@ -3,6 +3,8 @@ import ImageCard from "./ImageCard";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import "./gallery.css";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 
 const Gallery = () => {
   const [show, setShow] = useState(false);
@@ -23,14 +25,28 @@ const Gallery = () => {
         authorized: localStorage.getItem("token"),
       },
     };
+    // Failed notification
+    const failNotify = () => {
+      toast.error("Something Went Wrong", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    };
+    // Success Notification
+    const successNotify = () => {
+      toast.success("File Uploaded Successfully", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    };
     try {
       await axios.post("/api/post/gallery", formData, config);
       setTitle("");
-      alert("Your post was uploaded");
+      successNotify();
       handleClose();
     } catch (error) {
       console.log(error);
-      alert("Could not upload file");
+      failNotify();
     }
   };
   // get all posts
@@ -40,6 +56,7 @@ const Gallery = () => {
       .then((res) => setGetposts(res.data))
       .catch((err) => console.log(err));
   }, []);
+
   // Setting up title search
   const posts = getposts.filter((getpost) => {
     return getpost.posterTitle
@@ -57,6 +74,7 @@ const Gallery = () => {
             SHOW THE WORLD YOUR ART
           </Modal.Title>
         </Modal.Header>
+        {/* File and text inputs */}
         <Modal.Body className='modalbody'>
           <label className='uploadingapic'>
             Choose file
@@ -79,6 +97,7 @@ const Gallery = () => {
             required
           ></input>
         </Modal.Body>
+        {/* Uploading and cancel Buttons */}
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Cancel
@@ -94,7 +113,7 @@ const Gallery = () => {
         className='searchinput'
         placeholder='Search!'
         onChange={(e) => setPostsearch(e.target.value)}
-      ></FormControl>
+      />
       <div className='imgcontainer'>
         {posts.map((getpost) => (
           <ImageCard getpost={getpost} key={getpost._id} />

@@ -7,10 +7,10 @@ const commentSchema = new mongoose.Schema(
       required: true,
     },
     userId:
-      // buidling relation with userSchema
+      // relation with userSchema
       { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+    // relation with posterSchema
     posterId: {
-      // building relation with posterSchema
       type: mongoose.Schema.Types.ObjectId,
       ref: "poster",
     },

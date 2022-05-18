@@ -2,6 +2,10 @@
 .profilecover {
     background-color: #1A132F;
 }
+.profilepic {
+    width: 350px;
+    height: 350px;
+}
 .userprofile {
     margin-right: 2%;
 }

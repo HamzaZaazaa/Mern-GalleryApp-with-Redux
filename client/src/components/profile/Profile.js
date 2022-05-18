@@ -49,7 +49,6 @@ function Profile() {
                         : "https://icon-library.com/images/unknown-person-icon/unknown-person-icon-4.jpg"
                     }
                     alt='Profile Picture'
-                    // width={130}
                     className='rounded mb-2 img-thumbnail profilepic'
                   />
                   {/* Choose a profile Picture */}

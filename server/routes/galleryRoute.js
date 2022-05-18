@@ -2,13 +2,12 @@ const express = require("express");
 const upload = require("../Middlewares/upload");
 const router = express.Router();
 const userAuth = require("../Middlewares/userAuth");
-const { findByIdAndUpdate } = require("../Model/Poster");
 const Poster = require("../Model/Poster");
 
 // Post a picture in gallery
 router.post("/gallery", userAuth, upload.single("myPost"), async (req, res) => {
   try {
-    const poster = new Poster({
+    const poster = await new Poster({
       posterTitle: req.body.posterTitle,
       userId: req.user.id,
       post: req.file.filename,
@@ -39,8 +38,10 @@ router.put("/updateTitle", userAuth, async (req, res) => {
     await findByIdAndUpdate(req.poster.id, {
       $set: { posterTitle: req.body.posterTitle },
     });
+    res.status(200).send("Post Title updated");
   } catch (error) {
     res.status(500).send("Server Error");
   }
 });
+
 module.exports = router;

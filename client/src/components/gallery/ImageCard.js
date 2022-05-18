@@ -1,7 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card, FormControl } from "react-bootstrap";
+import { toast, ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 function ImageCard({ getpost }) {
+  // Toastify notifications
+  const notify = () => {
+    toast.success("Your comment was added");
+  };
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -35,9 +41,10 @@ function ImageCard({ getpost }) {
             <Card.Body>USER COMMENT GOES HERE</Card.Body>
           </Card>
           <FormControl placeholder='Enter a comment'></FormControl>
-          <Button variant='primary' style={{ width: "100%" }}>
+          <Button variant='primary' style={{ width: "100%" }} onClick={notify}>
             Add
           </Button>
+          <ToastContainer autoClose={1000} transition={Zoom} />
         </Card.Body>
       </Card>
     </div>

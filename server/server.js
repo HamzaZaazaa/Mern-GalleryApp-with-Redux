@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const connectDb = require("./config/connectDb");
 const auth = require("./auth/auth");
-const posterroute = require("./routes/posterroute");
+const profileroute = require("./routes/userprofileroute");
 const galleryroute = require("./routes/galleryRoute");
 const commentroute = require("./routes/commentRoute");
 
@@ -13,7 +13,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/auth", auth);
-app.use("/api/profile", posterroute);
+app.use("/api/profile", profileroute);
 app.use("/api/post", galleryroute);
 app.use("/api/comments", commentroute);
 

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Poster = require("./Poster");
 
 // types of documents in the collection
 const userSchema = new mongoose.Schema(
@@ -26,6 +27,22 @@ const userSchema = new mongoose.Schema(
     },
     // User Profile Picture fieldname
     postTitle: String,
+    // Relation with Gallery Schema
+    // Array for many posts
+    userposts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "poster",
+      },
+    ],
+    // Relatin with Comment Schema
+    // Array for many comments
+    usercomments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   {
     timestamps: true,

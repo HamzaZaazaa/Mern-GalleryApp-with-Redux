@@ -11,9 +11,15 @@ const posterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // Relation with User Schema
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
+    },
+    // Relation with Comment Schema
+    commentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "comment",
     },
   },
   {
