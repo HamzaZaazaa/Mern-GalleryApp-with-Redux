@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import ProfileCard from "./ProfileCard";
 
 function Profile() {
   // take user from reducer
   const user = useSelector((state) => state.authReducer.user);
   const [upload, setUpload] = useState(null);
+  const [userposts, setUserposts] = useState([]);
   // upload picture function
   const UploadPic = async () => {
     const data = new FormData();
@@ -24,6 +26,11 @@ function Profile() {
       console.log(error);
     }
   };
+useEffect(()=>{
+  axios.get(`/api/profile/getwithid/${user._id}`)
+  .then(res => setUserposts(res.data.post))
+  .catch(err=> console.log(err))
+},[])
   return (
     <div>
       <div className='row py-5 px-4 userprofile'>
@@ -74,6 +81,11 @@ function Profile() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="profilecardcontainer">
+      {
+        userposts.map(userpost=> <ProfileCard userpost={userpost} key={userpost._id} />)
+      }
       </div>
     </div>
   );

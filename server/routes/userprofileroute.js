@@ -17,14 +17,12 @@ router.put("/upload", userAuth, upload.single("myPic"), async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-// TESTING
-router.get("/getwithid", async (req, res) => {
+// GET POST WITH USER ID
+router.get("/getwithid/:id", async (req, res) => {
+      let {id} = req.params
   try {
-    const post = await Poster.find();
-    const user = await User.findById();
-    if (user._id === post.userId) {
-      return res.status(200).send({ user, post });
-    }
+    const post = await Poster.find({userId : id});
+      return res.status(200).send({"post" : post} );
   } catch (error) {
     res.status(500).send("Server Error");
   }
