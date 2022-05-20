@@ -9,12 +9,9 @@ commentroute.post("/addcomment", userAuth, async (req, res) => {
       usercomment: req.body.usercomment,
       userId: req.user.id,
     });
-    // saving comment to database
     await comment.save();
-    // response status (200 ok)
     res.status(200).send("comment added successfully");
   } catch (error) {
-    // respone status (500 server error)
     res.status(500).send("Server Error");
   }
 });

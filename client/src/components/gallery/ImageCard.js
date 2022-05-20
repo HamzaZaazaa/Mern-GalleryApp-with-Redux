@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card, FormControl } from "react-bootstrap";
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import axios from "axios";
+import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 function ImageCard({ getpost }) {
-  // Toastify notifications
-  const notify = () => {
-    toast.success("Your comment was added");
+  const [comment, setComment] = useState("");
+
+  const addComment = async () => {
+    const data = new FormData();
+    data.append("usercomment", comment);
+    const config = {
+      headers: {
+        authorized: localStorage.getItem("token"),
+      },
+    };
+    // Success Notification
+    const successNotify = () => {
+      toast.success("File Uploaded Successfully", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    };
+    // failed notification
+    const failNotify = () => {
+      toast.error("Something Went Wrong", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    };
+    try {
+      await axios.post("/api/comments/addcomment", data, config);
+      setComment("");
+      successNotify();
+    } catch (error) {
+      console.log(error);
+      failNotify();
+    }
   };
   return (
     <div>
@@ -40,11 +70,17 @@ function ImageCard({ getpost }) {
           <Card>
             <Card.Body>USER COMMENT GOES HERE</Card.Body>
           </Card>
-          <FormControl placeholder='Enter a comment'></FormControl>
-          <Button variant='primary' style={{ width: "100%" }} onClick={notify}>
+          <FormControl
+            placeholder='Enter a comment'
+            onChange={(e) => setComment(e.target.value)}
+          ></FormControl>
+          <Button
+            variant='primary'
+            style={{ width: "100%" }}
+            onClick={addComment}
+          >
             Add
           </Button>
-          <ToastContainer autoClose={1000} transition={Zoom} />
         </Card.Body>
       </Card>
     </div>

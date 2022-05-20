@@ -26,11 +26,12 @@ function Profile() {
       console.log(error);
     }
   };
-useEffect(()=>{
-  axios.get(`/api/profile/getwithid/${user._id}`)
-  .then(res => setUserposts(res.data.post))
-  .catch(err=> console.log(err))
-},[])
+  useEffect(() => {
+    axios
+      .get(`/api/profile/getwithid/${user._id}`)
+      .then((res) => setUserposts(res.data.post))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <div className='row py-5 px-4 userprofile'>
@@ -55,7 +56,7 @@ useEffect(()=>{
                         ? `uploads/${user.postTitle}`
                         : "https://icon-library.com/images/unknown-person-icon/unknown-person-icon-4.jpg"
                     }
-                    alt='Profile Picture'
+                    alt='Profile Pic'
                     className='rounded mb-2 img-thumbnail profilepic'
                   />
                   {/* Choose a profile Picture */}
@@ -82,10 +83,10 @@ useEffect(()=>{
           </div>
         </div>
       </div>
-      <div className="profilecardcontainer">
-      {
-        userposts.map(userpost=> <ProfileCard userpost={userpost} key={userpost._id} />)
-      }
+      <div className='profilecardcontainer'>
+        {userposts.map((userpost) => (
+          <ProfileCard userpost={userpost} key={userpost._id} />
+        ))}
       </div>
     </div>
   );

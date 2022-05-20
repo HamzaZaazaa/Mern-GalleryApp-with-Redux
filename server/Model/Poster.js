@@ -16,11 +16,6 @@ const posterSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
     },
-    // Relation with Comment Schema
-    commentId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "comment",
-    },
   },
   {
     timestamps: true,

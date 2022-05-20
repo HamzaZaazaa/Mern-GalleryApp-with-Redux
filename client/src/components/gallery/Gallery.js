@@ -68,7 +68,7 @@ const Gallery = () => {
       <Button variant='info' onClick={handleShow} className='Modalbtn'>
         Upload A Picture
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{ marginTop: "10%" }}>
         <Modal.Header closeButton>
           <Modal.Title className='modalTitle'>
             SHOW THE WORLD YOUR ART
