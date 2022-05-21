@@ -1,13 +1,9 @@
 import React from "react";
-
+import { Spinner } from "react-bootstrap";
+import "./loader.css";
 function Loader() {
   return (
-    <div className='container'>
-      <div className='yellow'></div>
-      <div className='red'></div>
-      <div className='blue'></div>
-      <div className='violet'></div>
-    </div>
+    <Spinner animation='border' variant='light' className='loader' size='lg' />
   );
 }
 

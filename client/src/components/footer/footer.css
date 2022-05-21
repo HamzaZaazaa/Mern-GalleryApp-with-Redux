@@ -1,0 +1,31 @@
+.footercontainer {
+    background-color: #1A132F;
+    height: 80px;
+}
+h5 {
+    margin-top: 10%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family:'Courier New', Courier, monospace
+}
+.facebookicon {
+    margin-left: 42%;
+    color: blue;
+}
+.instagramicon {
+    color: #bc2a8d;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.youtubeicon {
+    color: #c4302b ;
+}
+.facebookicon:hover {
+    color: rgb(255, 255, 255);
+}
+.instagramicon:hover {
+    color: rgb(255, 255, 255);
+}
+.youtubeicon:hover {
+    color: rgb(255, 255, 255);
+}

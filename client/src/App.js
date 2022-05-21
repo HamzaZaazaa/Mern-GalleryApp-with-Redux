@@ -10,6 +10,7 @@ import { identifier } from "./redux/actions/authActions";
 import PrivateRoute from "./routing/PrivateRoute";
 import Error from "./Attachments/Error";
 import Gallery from "./components/gallery/Gallery";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }

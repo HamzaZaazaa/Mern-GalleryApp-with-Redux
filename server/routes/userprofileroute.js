@@ -41,4 +41,12 @@ router.put("/titleedit/:id", userAuth, async (req, res) => {
     res.status(500).send(error);
   }
 });
+// Delete profile & all profile posts
+router.delete("/delprofile", userAuth, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id);
+  } catch (error) {
+    console.log("server error");
+  }
+});
 module.exports = router;

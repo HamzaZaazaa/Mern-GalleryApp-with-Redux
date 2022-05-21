@@ -45,7 +45,6 @@ const Gallery = () => {
       successNotify();
       handleClose();
     } catch (error) {
-      console.log(error);
       failNotify();
     }
   };
