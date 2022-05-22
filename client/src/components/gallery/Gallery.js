@@ -3,7 +3,7 @@ import ImageCard from "./ImageCard";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import "./gallery.css";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 
 const Gallery = () => {
@@ -43,9 +43,11 @@ const Gallery = () => {
       await axios.post("/api/post/gallery", formData, config);
       setTitle("");
       successNotify();
+      <ToastContainer />;
       handleClose();
     } catch (error) {
       failNotify();
+      <ToastContainer />;
     }
   };
   // get all posts
@@ -67,6 +69,7 @@ const Gallery = () => {
       <Button variant='info' onClick={handleShow} className='Modalbtn'>
         Upload A Picture
       </Button>
+      <ToastContainer />
       <Modal show={show} onHide={handleClose} style={{ marginTop: "10%" }}>
         <Modal.Header closeButton>
           <Modal.Title className='modalTitle'>

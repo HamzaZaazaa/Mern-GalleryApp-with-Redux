@@ -9,6 +9,11 @@ const commentSchema = new mongoose.Schema(
     userId:
       // relation with userSchema
       { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+
+    postId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "poster",
+    },
   },
   {
     timestamps: true,

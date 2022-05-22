@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card, FormControl } from "react-bootstrap";
 import axios from "axios";
 
@@ -14,7 +13,11 @@ function ImageCard({ getpost }) {
       },
     };
     try {
-      await axios.post("/api/comments/addcomment", comment, config);
+      await axios.post(
+        `/api/comments/addcomment/${getpost._id}`,
+        comment,
+        config
+      );
     } catch (error) {
       console.log(error);
     }

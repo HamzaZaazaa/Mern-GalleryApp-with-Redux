@@ -1,4 +1,5 @@
 const express = require("express");
+const req = require("express/lib/request");
 const upload = require("../Middlewares/upload");
 const router = express.Router();
 const userAuth = require("../Middlewares/userAuth");
@@ -39,6 +40,15 @@ router.put("/titleedit/:id", userAuth, async (req, res) => {
     res.status(200).send("Title updated");
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+// Delete Poster
+router.delete("/delpost/:id", userAuth, async (req, res) => {
+  let { id } = req.params;
+  try {
+    await Poster.findByIdAndDelete(id);
+  } catch (error) {
+    console.log("Server Error");
   }
 });
 // Delete profile & all profile posts

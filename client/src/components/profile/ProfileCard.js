@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Card, FormControl, Modal } from "react-bootstrap";
-
 function ProfileCard({ userpost }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -9,7 +8,21 @@ function ProfileCard({ userpost }) {
   const [showdel, setShowdel] = useState(false);
   const handledelClose = () => setShowdel(false);
   const handledelShow = () => setShowdel(true);
-
+  // Delete post
+  const DeletePost = async () => {
+    const config = {
+      headers: {
+        authorized: localStorage.getItem("token"),
+      },
+    };
+    // refresh page
+    window.location.reload();
+    try {
+      await axios.delete(`/api/profile/delpost/${userpost._id}`, config);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -40,10 +53,10 @@ function ProfileCard({ userpost }) {
             onHide={handledelClose}
             style={{ marginTop: "10%" }}
           >
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title>Are you sure you want to delete?</Modal.Title>
             </Modal.Header>
-            <Button variant='danger' onClick={handledelClose}>
+            <Button variant='danger' onClick={DeletePost}>
               Confirm
             </Button>
             <Button variant='primary' onClick={handledelClose}>
