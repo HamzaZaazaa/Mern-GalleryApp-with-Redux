@@ -1,27 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, FormControl } from "react-bootstrap";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 
 function ImageCard({ getpost }) {
-  const [comment, setComment] = useState({
-    usercomment: "",
-  });
+  const [comment, setComment] = useState("");
+  const [getcomments, setGetcomments] = useState([]);
   const addComment = async () => {
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
       },
     };
+    // success toast
+    const succNotify = () => {
+      toast.success("Comment Added", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    };
+    // fail toast
+    const failNotify = () => {
+      toast.error("something went wrong", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    };
     try {
       await axios.post(
         `/api/comments/addcomment/${getpost._id}`,
-        comment,
+        { comment },
         config
       );
+      succNotify();
     } catch (error) {
       console.log(error);
+      failNotify();
     }
   };
+
+  // AXIOS ERROR WITH WEBPACK
+
+  // useEffect(() => {
+  //   axios
+  //     .find("/api/comments/getcomments/:id")
+  //     .then((res) => setGetcomments(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
   return (
     <div>
       <div style={{ display: "flex" }}>
