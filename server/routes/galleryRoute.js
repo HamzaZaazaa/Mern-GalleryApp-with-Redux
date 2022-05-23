@@ -32,16 +32,4 @@ router.get("/getall", async (req, res) => {
   }
 });
 
-// update Poster title
-router.put("/updateTitle", userAuth, async (req, res) => {
-  try {
-    await findByIdAndUpdate(req.poster.id, {
-      $set: { posterTitle: req.body.posterTitle },
-    });
-    res.status(200).send("Post Title updated");
-  } catch (error) {
-    res.status(500).send("Server Error");
-  }
-});
-
 module.exports = router;

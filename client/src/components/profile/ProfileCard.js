@@ -8,21 +8,35 @@ function ProfileCard({ userpost }) {
   const [showdel, setShowdel] = useState(false);
   const handledelClose = () => setShowdel(false);
   const handledelShow = () => setShowdel(true);
+  const [edit, setEdit] = useState("")
+  console.log(edit)
   // Delete post
-  const DeletePost = async () => {
+  const DeletePost =async() => {
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
       },
     };
-    // refresh page
-    window.location.reload();
     try {
       await axios.delete(`/api/profile/delpost/${userpost._id}`, config);
     } catch (error) {
       console.log(error);
     }
   };
+  // edit Poster Title
+  const EditTitle =async() => {
+    const config = {
+      headers: {
+        authorized: localStorage.getItem("token"),
+      },
+    };
+    try {
+    
+      await axios.put(`/api/profile/titleedit/${userpost._id}`, {edit}, config)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -56,7 +70,11 @@ function ProfileCard({ userpost }) {
             <Modal.Header>
               <Modal.Title>Are you sure you want to delete?</Modal.Title>
             </Modal.Header>
-            <Button variant='danger' onClick={DeletePost}>
+            <Button variant='danger' onClick={()=>{
+              DeletePost()
+              handledelClose()
+            }
+            }>
               Confirm
             </Button>
             <Button variant='primary' onClick={handledelClose}>
@@ -69,13 +87,16 @@ function ProfileCard({ userpost }) {
               <Modal.Title>Write your new title</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <FormControl placeholder='your new title here' />
+              <FormControl placeholder='your new title here' onChange={e=> setEdit(e.target.value)} />
             </Modal.Body>
             <Modal.Footer>
               <Button variant='secondary' onClick={handleClose}>
                 Close
               </Button>
-              <Button variant='primary' onClick={handleClose}>
+              <Button variant='primary' onClick={()=>{
+                EditTitle()
+                handleClose()
+              }}>
                 Save Changes
               </Button>
             </Modal.Footer>

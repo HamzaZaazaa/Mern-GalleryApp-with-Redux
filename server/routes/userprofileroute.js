@@ -33,9 +33,10 @@ router.get("/getwithid/:id", async (req, res) => {
 // EDIT POST TITLE
 router.put("/titleedit/:id", userAuth, async (req, res) => {
   let { id } = req.params;
+  console.log(req.body)
   try {
     await Poster.findByIdAndUpdate(id, {
-      $set: { posterTitle: req.body },
+      $set: { posterTitle: req.body.edit },
     });
     res.status(200).send("Title updated");
   } catch (error) {
