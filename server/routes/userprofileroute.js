@@ -1,8 +1,8 @@
 const express = require("express");
-const req = require("express/lib/request");
 const upload = require("../Middlewares/upload");
 const router = express.Router();
 const userAuth = require("../Middlewares/userAuth");
+const Comment = require("../Model/Comment");
 const Poster = require("../Model/Poster");
 const User = require("../Model/User");
 
@@ -33,7 +33,7 @@ router.get("/getwithid/:id", async (req, res) => {
 // EDIT POST TITLE
 router.put("/titleedit/:id", userAuth, async (req, res) => {
   let { id } = req.params;
-  console.log(req.body)
+  console.log(req.body);
   try {
     await Poster.findByIdAndUpdate(id, {
       $set: { posterTitle: req.body.edit },
@@ -48,16 +48,19 @@ router.delete("/delpost/:id", userAuth, async (req, res) => {
   let { id } = req.params;
   try {
     await Poster.findByIdAndDelete(id);
+    res.status(200).send("poster Deleted");
   } catch (error) {
     console.log("Server Error");
   }
 });
-// Delete profile & all profile posts
-router.delete("/delprofile", userAuth, async (req, res) => {
+// Get comments with user id
+router.get("/usercomments/:id", async (req, res) => {
+  let { id } = req.params;
   try {
-    await User.findByIdAndDelete(req.user.id);
+    const comments = await Comment.find({ userId: id });
+    res.status(200).send(comments);
   } catch (error) {
-    console.log("server error");
+    console.log(error);
   }
 });
 module.exports = router;

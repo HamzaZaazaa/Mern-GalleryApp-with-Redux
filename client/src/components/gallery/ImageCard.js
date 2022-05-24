@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, FormControl } from "react-bootstrap";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
+import "./imagecard.css";
 
+import CommentBody from "./CommentBody";
 function ImageCard({ getpost }) {
   const [comment, setComment] = useState("");
-  const [getcomments, setGetcomments] = useState([]);
+  const [comments, setComments] = useState([]);
   const addComment = async () => {
     const config = {
       headers: {
@@ -41,13 +43,12 @@ function ImageCard({ getpost }) {
   };
 
   // AXIOS ERROR WITH WEBPACK
-
-  // useEffect(() => {
-  //   axios
-  //     .find("/api/comments/getcomments/:id")
-  //     .then((res) => setGetcomments(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`/api/comments/getcomments/${getpost._id}`)
+      .then((res) => setComments(res.data.Found))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -78,7 +79,12 @@ function ImageCard({ getpost }) {
             {getpost.posterTitle}
           </Card.Title>
           <Card>
-            <Card.Body>USER COMMENT GOES HERE</Card.Body>
+            {/* COMMENTS */}
+            <Card.Body>
+              {comments.map((comment) => (
+                <CommentBody comment={comment} key={comment._id} />
+              ))}
+            </Card.Body>
           </Card>
           <FormControl
             placeholder='Enter a comment'

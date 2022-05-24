@@ -1,0 +1,18 @@
+.comments {
+   text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  border-bottom: 1px solid;
+}
+.commenteduser {
+    display: flex;
+    font-size:x-small;
+    margin-top: 5%;
+}
+.commentandicon {
+  display: flex;
+  justify-content: space-between;
+}
+#deleteicon {
+  position: absolute;
+  margin-left: 75%;
+}

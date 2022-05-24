@@ -22,8 +22,21 @@ commentroute.post("/addcomment/:id", userAuth, async (req, res) => {
 commentroute.get("/getcomments/:id", async (req, res) => {
   let { id } = req.params;
   try {
-    const comments = await Comment.find({ postId: id });
+    const comments = await Comment.find({ postId: id }).populate("userId", [
+      "name",
+      "lastname",
+    ]);
     return res.status(200).send({ Found: comments });
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+});
+// Delete comment
+commentroute.delete("/deletecomment/:id", userAuth, async (req, res) => {
+  let { id } = req.params;
+  try {
+    await Comment.findByIdAndDelete(id);
+    res.status(200).send("comment deleted");
   } catch (error) {
     res.status(500).send("Server Error");
   }

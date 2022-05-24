@@ -1,17 +1,19 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, FormControl, Modal } from "react-bootstrap";
-function ProfileCard({ userpost }) {
+import UserComments from "./UserComments";
+
+function ProfileCard({ userpost, user }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [showdel, setShowdel] = useState(false);
   const handledelClose = () => setShowdel(false);
   const handledelShow = () => setShowdel(true);
-  const [edit, setEdit] = useState("")
-  console.log(edit)
+  const [edit, setEdit] = useState("");
+  const [comments, setComments] = useState([]);
   // Delete post
-  const DeletePost =async() => {
+  const DeletePost = async () => {
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
@@ -24,19 +26,29 @@ function ProfileCard({ userpost }) {
     }
   };
   // edit Poster Title
-  const EditTitle =async() => {
+  const EditTitle = async () => {
     const config = {
       headers: {
         authorized: localStorage.getItem("token"),
       },
     };
     try {
-    
-      await axios.put(`/api/profile/titleedit/${userpost._id}`, {edit}, config)
+      await axios.put(
+        `/api/profile/titleedit/${userpost._id}`,
+        { edit },
+        config
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+  // GET USER COMMENTS
+  useEffect(() => {
+    axios
+      .get(`/api/profile/usercomments/${user._id}`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -61,6 +73,12 @@ function ProfileCard({ userpost }) {
           >
             Delete
           </Button>
+          {/* MODAL BODY */}
+          <Card.Body>
+            {comments.map((comment) => (
+              <UserComments comment={comment} key={comment._id} />
+            ))}
+          </Card.Body>
           {/* MODAL FOR DELETE */}
           <Modal
             show={showdel}
@@ -70,11 +88,13 @@ function ProfileCard({ userpost }) {
             <Modal.Header>
               <Modal.Title>Are you sure you want to delete?</Modal.Title>
             </Modal.Header>
-            <Button variant='danger' onClick={()=>{
-              DeletePost()
-              handledelClose()
-            }
-            }>
+            <Button
+              variant='danger'
+              onClick={() => {
+                DeletePost();
+                handledelClose();
+              }}
+            >
               Confirm
             </Button>
             <Button variant='primary' onClick={handledelClose}>
@@ -87,16 +107,22 @@ function ProfileCard({ userpost }) {
               <Modal.Title>Write your new title</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <FormControl placeholder='your new title here' onChange={e=> setEdit(e.target.value)} />
+              <FormControl
+                placeholder='your new title here'
+                onChange={(e) => setEdit(e.target.value)}
+              />
             </Modal.Body>
             <Modal.Footer>
               <Button variant='secondary' onClick={handleClose}>
                 Close
               </Button>
-              <Button variant='primary' onClick={()=>{
-                EditTitle()
-                handleClose()
-              }}>
+              <Button
+                variant='primary'
+                onClick={() => {
+                  EditTitle();
+                  handleClose();
+                }}
+              >
                 Save Changes
               </Button>
             </Modal.Footer>

@@ -85,7 +85,7 @@ function Profile() {
       </div>
       <div className='profilecardcontainer'>
         {userposts.map((userpost) => (
-          <ProfileCard userpost={userpost} key={userpost._id} />
+          <ProfileCard userpost={userpost} user={user} key={userpost._id} />
         ))}
       </div>
     </div>
