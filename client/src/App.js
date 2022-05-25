@@ -11,6 +11,9 @@ import PrivateRoute from "./routing/PrivateRoute";
 import Error from "./Attachments/Error";
 import Gallery from "./components/gallery/Gallery";
 import Footer from "./components/footer/Footer";
+import AdminRoute from "./routing/AdminRoute";
+import Admin from "./components/Admin/Admin";
+import LinkToAdmin from "./components/Admin/LinkToAdmin";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +25,7 @@ function App() {
     <div>
       <NavBarr />
       <Error />
+      <LinkToAdmin />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
@@ -39,6 +43,16 @@ function App() {
           element={
             <PrivateRoute>
               <Gallery />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='admin'
+          element={
+            <PrivateRoute>
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
             </PrivateRoute>
           }
         />

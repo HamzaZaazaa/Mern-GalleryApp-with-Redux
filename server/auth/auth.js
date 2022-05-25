@@ -9,6 +9,7 @@ const {
   signinRequirements,
 } = require("../Middlewares/validator");
 const userAuth = require("../Middlewares/userAuth");
+const User = require("../Model/User");
 
 // SIGN UP
 userroute.post("/signup", requirements, validator, async (req, res) => {

@@ -53,14 +53,4 @@ router.delete("/delpost/:id", userAuth, async (req, res) => {
     console.log("Server Error");
   }
 });
-// Get comments with user id
-router.get("/usercomments/:id", async (req, res) => {
-  let { id } = req.params;
-  try {
-    const comments = await Comment.find({ userId: id });
-    res.status(200).send(comments);
-  } catch (error) {
-    console.log(error);
-  }
-});
 module.exports = router;

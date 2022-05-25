@@ -1,0 +1,34 @@
+const express = require("express");
+const adminroute = express.Router();
+const userAuth = require("../Middlewares/userAuth");
+const Poster = require("../Model/Poster");
+const User = require("../Model/User");
+// Get all posts
+adminroute.get("/adminpost", async (req, res) => {
+  try {
+    const getall = await Poster.find();
+    res.status(200).send(getall);
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+});
+// get all users
+adminroute.get("/allusers", async (req, res) => {
+  try {
+    const allusers = await User.find();
+    res.status(200).send(allusers);
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+});
+// delete posts
+adminroute.delete("/admindel/:id", userAuth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Poster.findByIdAndDelete(id);
+    res.status(200).send("Post Deleted");
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+});
+module.exports = adminroute;

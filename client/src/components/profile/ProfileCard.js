@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Card, FormControl, Modal } from "react-bootstrap";
-import UserComments from "./UserComments";
 
 function ProfileCard({ userpost, user }) {
   const [show, setShow] = useState(false);
@@ -11,7 +10,7 @@ function ProfileCard({ userpost, user }) {
   const handledelClose = () => setShowdel(false);
   const handledelShow = () => setShowdel(true);
   const [edit, setEdit] = useState("");
-  const [comments, setComments] = useState([]);
+
   // Delete post
   const DeletePost = async () => {
     const config = {
@@ -42,13 +41,6 @@ function ProfileCard({ userpost, user }) {
       console.log(error);
     }
   };
-  // GET USER COMMENTS
-  useEffect(() => {
-    axios
-      .get(`/api/profile/usercomments/${user._id}`)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -73,12 +65,6 @@ function ProfileCard({ userpost, user }) {
           >
             Delete
           </Button>
-          {/* MODAL BODY */}
-          <Card.Body>
-            {comments.map((comment) => (
-              <UserComments comment={comment} key={comment._id} />
-            ))}
-          </Card.Body>
           {/* MODAL FOR DELETE */}
           <Modal
             show={showdel}

@@ -82,7 +82,11 @@ function ImageCard({ getpost }) {
             {/* COMMENTS */}
             <Card.Body>
               {comments.map((comment) => (
-                <CommentBody comment={comment} key={comment._id} />
+                <CommentBody
+                  comment={comment}
+                  getpost={getpost}
+                  key={comment._id}
+                />
               ))}
             </Card.Body>
           </Card>

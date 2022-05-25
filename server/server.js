@@ -5,7 +5,7 @@ const auth = require("./auth/auth");
 const profileroute = require("./routes/userprofileroute");
 const galleryroute = require("./routes/galleryRoute");
 const commentroute = require("./routes/commentRoute");
-
+const adminroute = require("./routes/adminRoute");
 // connect database to the server
 connectDb();
 // reading JSON format
@@ -16,6 +16,7 @@ app.use("/api/auth", auth);
 app.use("/api/profile", profileroute);
 app.use("/api/post", galleryroute);
 app.use("/api/comments", commentroute);
+app.use("/api/admin", adminroute);
 
 // app running on port 9000
 const port = 9000;

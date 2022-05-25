@@ -1,6 +1,8 @@
 .footercontainer {
     background-color: #1A132F;
     height: 80px;
+    position: relative;
+    margin-top: 20%;
 }
 h5 {
     margin-top: 10%;

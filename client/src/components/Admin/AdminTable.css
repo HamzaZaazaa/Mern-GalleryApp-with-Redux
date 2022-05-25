@@ -1,0 +1,14 @@
+.adminTable {
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 20%;
+}
+th {
+    text-align: center;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+td {
+    text-align: center;
+    color: white;
+}
