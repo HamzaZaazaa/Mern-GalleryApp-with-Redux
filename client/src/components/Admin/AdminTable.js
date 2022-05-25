@@ -7,8 +7,8 @@ function AdminTable({ posts, users }) {
       <Table bordered>
         <thead>
           <tr>
-            <th>Accounts Number</th>
-            <th>Posts Number</th>
+            <th>Number of accounts</th>
+            <th>Number of posts</th>
           </tr>
         </thead>
         <tbody>

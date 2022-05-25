@@ -41,4 +41,16 @@ commentroute.delete("/deletecomment/:id", userAuth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+// Edit comment
+commentroute.put("/editcomment/:id", userAuth, async (req, res) => {
+  let { id } = req.params;
+  try {
+    await Comment.findByIdAndUpdate(id, {
+      $set: { usercomment: req.body.usercomment },
+    });
+    res.status(200).send("Comment updated");
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+});
 module.exports = commentroute;

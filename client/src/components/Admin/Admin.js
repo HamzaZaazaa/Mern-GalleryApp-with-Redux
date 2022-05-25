@@ -22,6 +22,11 @@ function Admin() {
   }, []);
   return (
     <div>
+      <h3
+        style={{ textAlign: "center", fontFamily: "cursive", color: "white" }}
+      >
+        Welcome Administrator
+      </h3>
       <AdminTable posts={posts} users={users} />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {users.map((user) => (

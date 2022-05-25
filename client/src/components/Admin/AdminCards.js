@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
+import { toast } from "react-toastify";
 function AdminCards({ post }) {
   // Delete post
   const deletePost = async () => {
@@ -9,8 +10,15 @@ function AdminCards({ post }) {
         authorized: localStorage.getItem("token"),
       },
     };
+    const delNotify = () => {
+      toast.success("Post deleted Successfully", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+    };
     try {
       await axios.delete(`/api/admin/admindel/${post._id}`, config);
+      delNotify();
     } catch (error) {
       console.log(error);
     }
