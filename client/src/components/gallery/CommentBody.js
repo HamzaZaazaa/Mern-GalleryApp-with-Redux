@@ -7,9 +7,13 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { MdModeEdit } from "react-icons/md";
 
+
 function CommentBody({ comment }) {
   const [smShow, setSmShow] = useState(false);
+  const [editcomment, setEditcomment] = useState(comment.usercomment)
   const user = useSelector((state) => state.authReducer.user);
+
+
   const Deletecomment = () => {
     const config = {
       headers: {
@@ -17,12 +21,12 @@ function CommentBody({ comment }) {
       },
     };
     // success toast
-    const succNotify = () => {
-      toast.success("Comment Deleted", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000,
-      });
-    };
+  const succNotify = () => {
+    toast.success("Comment Deleted", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
     try {
       axios.delete(`/api/comments/deletecomment/${comment._id}`, config);
       succNotify();
@@ -30,6 +34,27 @@ function CommentBody({ comment }) {
       console.log(error);
     }
   };
+  // Edit comment
+  const CommentUpdated =async()=> {
+    const config = {
+      headers: {
+        authorized: localStorage.getItem("token"),
+      },
+    };
+    // success toast
+  const succNotify = () => {
+    toast.success("Comment Updated", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+    try {
+      await axios.put(`/api/comments/editcomment/${comment._id}`, {editcomment}, config)
+      succNotify()
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div>
       <div>
@@ -95,9 +120,12 @@ function CommentBody({ comment }) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormControl placeholder='Enter your new comment' />
+          <FormControl placeholder='Enter your new comment' value={editcomment}  onChange={e=>setEditcomment(e.target.value)}/>
         </Modal.Body>
-        <Button variant='success'>Save</Button>
+        <Button variant='success' onClick={()=>{
+          CommentUpdated();
+          setSmShow(false);
+        }}>Save</Button>
       </Modal>
     </div>
   );

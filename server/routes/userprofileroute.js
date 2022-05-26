@@ -52,4 +52,14 @@ router.delete("/delpost/:id", userAuth, async (req, res) => {
     console.log("Server Error");
   }
 });
+// Delete users
+router.delete("/deleteuser", userAuth, async(req,res)=> {
+  try {
+    await User.findByIdAndDelete(req.user.id)
+    await Poster.deleteMany({userId : req.user.id})
+    await Comment.deleteMany({userId : req.user.id})
+  } catch (error) {
+    res.status(500).send("Server Error")
+  }
+})
 module.exports = router;

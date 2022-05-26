@@ -3,6 +3,7 @@ const adminroute = express.Router();
 const userAuth = require("../Middlewares/userAuth");
 const Poster = require("../Model/Poster");
 const User = require("../Model/User");
+const Comment = require("../Model/Comment")
 // Get all posts
 adminroute.get("/adminpost", async (req, res) => {
   try {
@@ -31,4 +32,5 @@ adminroute.delete("/admindel/:id", userAuth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 module.exports = adminroute;

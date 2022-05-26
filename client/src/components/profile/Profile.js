@@ -87,6 +87,7 @@ function Profile() {
         {userposts.map((userpost) => (
           <ProfileCard userpost={userpost} user={user} key={userpost._id} />
         ))}
+        <Button variant="danger" className="deleteprofilebtn">Delete Account </Button>
       </div>
     </div>
   );
