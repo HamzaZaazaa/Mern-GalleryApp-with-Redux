@@ -5,12 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import ProfileCard from "./ProfileCard";
-
+import { useNavigate } from "react-router-dom";
 function Profile() {
   // take user from reducer
   const user = useSelector((state) => state.authReducer.user);
   const [upload, setUpload] = useState(null);
   const [userposts, setUserposts] = useState([]);
+  const navigate = useNavigate();
   // upload picture function
   const UploadPic = async () => {
     const data = new FormData();
@@ -26,12 +27,31 @@ function Profile() {
       console.log(error);
     }
   };
+  // Get user posts
   useEffect(() => {
     axios
       .get(`/api/profile/getwithid/${user._id}`)
       .then((res) => setUserposts(res.data.post))
       .catch((err) => console.log(err));
   }, []);
+  // Delete user with his posts and comments
+  const deleteUser = async () => {
+    const config = {
+      headers: {
+        authorized: localStorage.getItem("token"),
+      },
+    };
+    try {
+      await axios.delete("/api/profile/deleteuser", config);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const removeall = () => {
+    deleteUser();
+    navigate("/login");
+    localStorage.removeItem("token");
+  };
   return (
     <div>
       <div className='row py-5 px-4 userprofile'>
@@ -77,6 +97,13 @@ function Profile() {
                   >
                     Upload
                   </Button>
+                  <Button
+                    variant='outline-danger'
+                    className='deleteprofilebtn'
+                    onClick={removeall}
+                  >
+                    Delete Account{" "}
+                  </Button>
                 </div>
               </div>
             </div>
@@ -87,7 +114,6 @@ function Profile() {
         {userposts.map((userpost) => (
           <ProfileCard userpost={userpost} user={user} key={userpost._id} />
         ))}
-        <Button variant="danger" className="deleteprofilebtn">Delete Account </Button>
       </div>
     </div>
   );

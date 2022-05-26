@@ -54,7 +54,6 @@ input[type="file"] {
     justify-content: space-around;
 }
 .deleteprofilebtn {
-    position: absolute;
-    margin-top: 10%;
-    width: 30%;
+    margin-left: 30%;
+    margin-top: 5%;
 }
