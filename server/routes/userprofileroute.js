@@ -47,6 +47,7 @@ router.delete("/delpost/:id", userAuth, async (req, res) => {
   let { id } = req.params;
   try {
     await Poster.findByIdAndDelete(id);
+    await Comment.deleteMany({ postId: id });
     res.status(200).send("poster Deleted");
   } catch (error) {
     console.log("Server Error");

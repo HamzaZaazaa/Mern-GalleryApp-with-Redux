@@ -5,6 +5,7 @@ import "./gallery.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
+import { useSelector } from "react-redux";
 
 const Gallery = () => {
   const [show, setShow] = useState(false);
@@ -14,7 +15,7 @@ const Gallery = () => {
   const [uploadpic, setUploadpic] = useState(null);
   const [getposts, setGetposts] = useState([]);
   const [postsearch, setPostsearch] = useState("");
-
+  const user = useSelector((state) => state.authReducer.user);
   // Uploading a new picture with a title
   const UploadingPic = async () => {
     const formData = new FormData();
@@ -66,10 +67,11 @@ const Gallery = () => {
   });
   return (
     <div>
-      <Button variant='info' onClick={handleShow} className='Modalbtn'>
-        Upload A Picture
-      </Button>
-      <ToastContainer />
+      {user.role === 0 ? (
+        <Button variant='info' onClick={handleShow} className='Modalbtn'>
+          Upload A Picture
+        </Button>
+      ) : null}
       <Modal show={show} onHide={handleClose} style={{ marginTop: "10%" }}>
         <Modal.Header closeButton>
           <Modal.Title className='modalTitle'>

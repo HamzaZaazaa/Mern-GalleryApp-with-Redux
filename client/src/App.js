@@ -4,7 +4,7 @@ import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import HomePage from "./components/home/HomePage";
 import Profile from "./components/profile/Profile";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { identifier } from "./redux/actions/authActions";
 import PrivateRoute from "./routing/PrivateRoute";
@@ -14,19 +14,22 @@ import Footer from "./components/footer/Footer";
 import AdminRoute from "./routing/AdminRoute";
 import Admin from "./components/Admin/Admin";
 import LinkToAdmin from "./components/Admin/LinkToAdmin";
-
+import NotFound from "./Attachments/404Notfound/NotFound";
 function App() {
   const dispatch = useDispatch();
+  const [theme, setTheme] = useState("light");
   // in app to work in every component
   useEffect(() => {
     dispatch(identifier());
   }, [dispatch]);
+  // Light theme function
   return (
     <div>
       <NavBarr />
       <Error />
       <LinkToAdmin />
       <Routes>
+        <Route path='*' element={<NotFound />} />
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />

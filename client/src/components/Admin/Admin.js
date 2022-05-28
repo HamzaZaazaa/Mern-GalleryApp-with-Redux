@@ -23,7 +23,12 @@ function Admin() {
   return (
     <div>
       <h3
-        style={{ textAlign: "center", fontFamily: "cursive", color: "white" }}
+        style={{
+          textAlign: "center",
+          fontFamily: "cursive",
+          color: "white",
+          marginTop: "5%",
+        }}
       >
         Welcome Administrator
       </h3>

@@ -9,7 +9,7 @@ function LinkToAdmin() {
     <>
       {user && user.role === 1 ? (
         <Link to='/admin'>
-          <Button variant='outline-light' style={{ marginLeft: "87%" }}>
+          <Button variant='outline-light' style={{ marginLeft: "45%" }}>
             ADMINISTARTION
           </Button>
         </Link>

@@ -41,6 +41,8 @@ function Profile() {
         authorized: localStorage.getItem("token"),
       },
     };
+    // Refresh browser
+    window.location.reload();
     try {
       await axios.delete("/api/profile/deleteuser", config);
     } catch (error) {
@@ -97,13 +99,15 @@ function Profile() {
                   >
                     Upload
                   </Button>
-                  <Button
-                    variant='outline-danger'
-                    className='deleteprofilebtn'
-                    onClick={removeall}
-                  >
-                    Delete Account{" "}
-                  </Button>
+                  {user.role === 0 ? (
+                    <Button
+                      variant='outline-danger'
+                      className='deleteprofilebtn'
+                      onClick={removeall}
+                    >
+                      Delete Account{" "}
+                    </Button>
+                  ) : null}
                 </div>
               </div>
             </div>

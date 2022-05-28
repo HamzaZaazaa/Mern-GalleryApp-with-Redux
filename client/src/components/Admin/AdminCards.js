@@ -16,6 +16,8 @@ function AdminCards({ post }) {
         autoClose: 2000,
       });
     };
+    // Refresh browser
+    window.location.reload();
     try {
       await axios.delete(`/api/admin/admindel/${post._id}`, config);
       delNotify();

@@ -4,8 +4,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./imagecard.css";
-
+import { AiOutlineLike } from "react-icons/ai";
 import CommentBody from "./CommentBody";
+
 function ImageCard({ getpost }) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
@@ -29,6 +30,8 @@ function ImageCard({ getpost }) {
         autoClose: 2000,
       });
     };
+    // refresh browser
+    window.location.reload();
     try {
       await axios.post(
         `/api/comments/addcomment/${getpost._id}`,
@@ -61,6 +64,7 @@ function ImageCard({ getpost }) {
       </div>
       <Card style={{ width: "18rem" }}>
         <Card.Img variant='top' src={`uploads/${getpost.post}`} />
+        {/* Download button */}
         <Button variant='outline-info'>
           <a
             href={`uploads/${getpost.post}`}
@@ -75,7 +79,7 @@ function ImageCard({ getpost }) {
           </a>
         </Button>
         <Card.Body>
-          <Card.Title style={{ textAlign: "center" }}>
+          <Card.Title style={{ textAlign: "center", fontFamily: "monospace" }}>
             {getpost.posterTitle}
           </Card.Title>
           <Card>

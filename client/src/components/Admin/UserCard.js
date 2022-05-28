@@ -20,7 +20,8 @@ function UserCard({ user }) {
         autoClose: 5000,
       });
     };
-
+    // Refresh browser
+    window.location.reload();
     try {
       await axios.delete(`/api/admin/admindelete/${user._id}`, config);
       successNotify();
@@ -28,9 +29,8 @@ function UserCard({ user }) {
       console.log(error);
     }
   };
-  console.log(user);
   return (
-    <Card style={{ width: "30%", marginTop: "5%", display: "flex" }}>
+    <Card style={{ width: "15%", marginTop: "5%", display: "flex" }}>
       {user.role === 1 ? (
         <MdOutlineAdminPanelSettings size={25} />
       ) : (

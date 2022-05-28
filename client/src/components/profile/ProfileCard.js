@@ -18,6 +18,8 @@ function ProfileCard({ userpost, user }) {
         authorized: localStorage.getItem("token"),
       },
     };
+    // Refresh browser
+    window.location.reload();
     try {
       await axios.delete(`/api/profile/delpost/${userpost._id}`, config);
     } catch (error) {
@@ -31,6 +33,8 @@ function ProfileCard({ userpost, user }) {
         authorized: localStorage.getItem("token"),
       },
     };
+    // Refresh browser
+    window.location.reload();
     try {
       await axios.put(
         `/api/profile/titleedit/${userpost._id}`,

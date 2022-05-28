@@ -3,6 +3,7 @@ const upload = require("../Middlewares/upload");
 const router = express.Router();
 const userAuth = require("../Middlewares/userAuth");
 const Poster = require("../Model/Poster");
+const User = require("../Model/User");
 
 // Post a picture in gallery
 router.post("/gallery", userAuth, upload.single("myPost"), async (req, res) => {
