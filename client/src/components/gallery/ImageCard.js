@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./imagecard.css";
-import { AiOutlineLike } from "react-icons/ai";
 import CommentBody from "./CommentBody";
 
 function ImageCard({ getpost }) {

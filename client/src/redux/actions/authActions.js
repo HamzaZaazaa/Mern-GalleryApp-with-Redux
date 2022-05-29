@@ -21,7 +21,7 @@ export const register = (data, navigate) => async (disptatch) => {
     });
     // to profile after signup
     // navigate only after success
-    navigate("/profile");
+    navigate("/gallery");
   } catch (error) {
     error.response.data.errors.forEach((err) =>
       disptatch(setAlert(err.message, "danger"))

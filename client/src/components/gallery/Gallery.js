@@ -5,7 +5,8 @@ import "./gallery.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../../redux/actions/postActions";
 
 const Gallery = () => {
   const [show, setShow] = useState(false);
@@ -13,9 +14,10 @@ const Gallery = () => {
   const handleShow = () => setShow(true);
   const [title, setTitle] = useState("");
   const [uploadpic, setUploadpic] = useState(null);
-  const [getposts, setGetposts] = useState([]);
   const [postsearch, setPostsearch] = useState("");
   const user = useSelector((state) => state.authReducer.user);
+  let disptach = useDispatch();
+  const posts = useSelector((state) => state.postReducer.posts);
   // Uploading a new picture with a title
   const UploadingPic = async () => {
     const formData = new FormData();
@@ -53,18 +55,15 @@ const Gallery = () => {
   };
   // get all posts
   useEffect(() => {
-    axios
-      .get("/api/post/getall")
-      .then((res) => setGetposts(res.data))
-      .catch((err) => console.log(err));
+    disptach(getPosts());
   }, []);
-
   // Setting up title search
-  const posts = getposts.filter((getpost) => {
+  const Search = posts.filter((getpost) => {
     return getpost.posterTitle
       .toLowerCase()
       .includes(postsearch.toLowerCase().trim());
   });
+
   return (
     <div>
       {user.role === 0 ? (

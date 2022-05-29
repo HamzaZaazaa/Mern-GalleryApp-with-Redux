@@ -17,12 +17,10 @@ import LinkToAdmin from "./components/Admin/LinkToAdmin";
 import NotFound from "./Attachments/404Notfound/NotFound";
 function App() {
   const dispatch = useDispatch();
-  const [theme, setTheme] = useState("light");
   // in app to work in every component
   useEffect(() => {
     dispatch(identifier());
   }, [dispatch]);
-  // Light theme function
   return (
     <div>
       <NavBarr />
