@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AdminCards from "./AdminCards";
 import AdminTable from "./AdminTable";
-import UserCard from "./UserCard";
+import {Routes, Route} from "react-router-dom"
+import LinkToposts from "./LinkToposts";
+import LinkTousers from "./LinkTousers";
 function Admin() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
@@ -32,23 +33,11 @@ function Admin() {
       >
         Welcome Administrator
       </h3>
-      <AdminTable posts={posts} users={users} />
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        {users.map((user) => (
-          <UserCard user={user} key={user._id} />
-        ))}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "10%",
-        }}
-      >
-        {posts.map((post) => (
-          <AdminCards post={post} key={post._id} />
-        ))}
-      </div>
+      <AdminTable users={users} posts={posts} />
+      <Routes>
+        <Route path="/allusers" element={<LinkTousers users={users}/>} />
+        <Route path="/allposts" element={<LinkToposts posts={posts} />} />
+      </Routes>
     </div>
   );
 }

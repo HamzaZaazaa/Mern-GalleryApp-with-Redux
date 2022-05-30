@@ -15,6 +15,7 @@ import AdminRoute from "./routing/AdminRoute";
 import Admin from "./components/Admin/Admin";
 import LinkToAdmin from "./components/Admin/LinkToAdmin";
 import NotFound from "./Attachments/404Notfound/NotFound";
+import EditProfile from "./components/profile/EditProfile";
 function App() {
   const dispatch = useDispatch();
   // in app to work in every component
@@ -48,7 +49,7 @@ function App() {
           }
         />
         <Route
-          path='admin'
+          path='admin/*'
           element={
             <PrivateRoute>
               <AdminRoute>
@@ -57,6 +58,11 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/editprofile" element={
+          <PrivateRoute>
+            <EditProfile />
+          </PrivateRoute>
+        } />
       </Routes>
       <Footer />
     </div>

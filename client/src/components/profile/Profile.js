@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import ProfileCard from "./ProfileCard";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Profile() {
   // take user from reducer
   const user = useSelector((state) => state.authReducer.user);
@@ -71,6 +71,8 @@ function Profile() {
                       {user && user.lastname}
                     </h2>
                   </div>
+                  {/* Edit Profile Button */}
+                  <Link to="/editprofile"><Button variant="outline-info" className="Editbtn">Edit Profile</Button></Link>
                   {/* Profile picture */}
                   <img
                     src={

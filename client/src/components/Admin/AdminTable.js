@@ -1,5 +1,6 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./AdminTable.css";
 function AdminTable({ posts, users }) {
   return (
@@ -7,8 +8,8 @@ function AdminTable({ posts, users }) {
       <Table bordered>
         <thead>
           <tr>
-            <th>Number of accounts</th>
-            <th>Number of posts</th>
+            <th><Link to="/admin/allusers"><Button variant="outline-light" className="postsbtn">Number of accounts</Button></Link></th>
+            <th><Link to="/admin/allposts"><Button variant="outline-light" className="postsbtn">Number of posts</Button></Link></th>
           </tr>
         </thead>
         <tbody>

@@ -17,7 +17,7 @@ const NavBarr = () => {
   };
   return (
     <div>
-      <Navbar bg='light' variant='dark' sticky='top'>
+      <Navbar bg='light' variant='dark' fixed="top" className="navbarclass">
         <Container>
           <img src={alzaPic} alt='' className='navbarLogo' />
           <Nav className='me-auto'>

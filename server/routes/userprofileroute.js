@@ -64,4 +64,18 @@ router.delete("/deleteuser", userAuth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// Edit user name & lastname
+router.put("/editname", userAuth, async(req,res)=> {
+  try {
+    const edited =await User.findByIdAndUpdate(req.user.id, {
+      $set : {name : req.body.name,
+        lastname : req.body.lastname     
+      }
+    })
+    res.status(200).send("User Name Updated", edited)
+  } catch (error) {
+    res.status(500).send("Server Error")
+  }
+})
 module.exports = router;

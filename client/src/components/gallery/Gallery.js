@@ -16,7 +16,7 @@ const Gallery = () => {
   const [uploadpic, setUploadpic] = useState(null);
   const [postsearch, setPostsearch] = useState("");
   const user = useSelector((state) => state.authReducer.user);
-  let disptach = useDispatch();
+  const disptach = useDispatch();
   const posts = useSelector((state) => state.postReducer.posts);
   // Uploading a new picture with a title
   const UploadingPic = async () => {
@@ -57,13 +57,6 @@ const Gallery = () => {
   useEffect(() => {
     disptach(getPosts());
   }, []);
-  // Setting up title search
-  const Search = posts.filter((getpost) => {
-    return getpost.posterTitle
-      .toLowerCase()
-      .includes(postsearch.toLowerCase().trim());
-  });
-
   return (
     <div>
       {user.role === 0 ? (
@@ -118,7 +111,10 @@ const Gallery = () => {
         onChange={(e) => setPostsearch(e.target.value)}
       />
       <div className='imgcontainer'>
-        {posts.map((getpost) => (
+        {posts.filter((getpost) => {
+    return getpost.posterTitle
+      .toLowerCase()
+      .includes(postsearch.toLowerCase().trim())}).map((getpost) => (
           <ImageCard getpost={getpost} key={getpost._id} />
         ))}
       </div>
