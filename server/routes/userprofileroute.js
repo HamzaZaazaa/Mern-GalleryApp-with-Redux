@@ -66,16 +66,17 @@ router.delete("/deleteuser", userAuth, async (req, res) => {
 });
 
 // Edit user name & lastname
-router.put("/editname", userAuth, async(req,res)=> {
+router.put("/editname", userAuth, async (req, res) => {
   try {
-    const edited =await User.findByIdAndUpdate(req.user.id, {
-      $set : {name : req.body.name,
-        lastname : req.body.lastname     
-      }
-    })
-    res.status(200).send("User Name Updated", edited)
+    await User.findByIdAndUpdate(req.user.id, {
+      $set: {
+        name: req.body.edituser.name,
+        lastname: req.body.edituser.lastname,
+      },
+    });
+    res.status(200).send("User Name Updated");
   } catch (error) {
-    res.status(500).send("Server Error")
+    res.status(500).send("Server Error");
   }
-})
+});
 module.exports = router;

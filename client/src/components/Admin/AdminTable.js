@@ -2,14 +2,36 @@ import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./AdminTable.css";
+import { motion } from "framer-motion";
 function AdminTable({ posts, users }) {
   return (
-    <div className='adminTable'>
+    <motion.div
+      className='adminTable'
+      drag
+      dragConstraints={{
+        top: -50,
+        left: -50,
+        right: 50,
+        bottom: 50,
+      }}
+    >
       <Table bordered>
         <thead>
           <tr>
-            <th><Link to="/admin/allusers"><Button variant="outline-light" className="postsbtn">Number of accounts</Button></Link></th>
-            <th><Link to="/admin/allposts"><Button variant="outline-light" className="postsbtn">Number of posts</Button></Link></th>
+            <th>
+              <Link to='/admin/allusers'>
+                <Button variant='outline-light' className='postsbtn'>
+                  Number of accounts
+                </Button>
+              </Link>
+            </th>
+            <th>
+              <Link to='/admin/allposts'>
+                <Button variant='outline-light' className='postsbtn'>
+                  Number of posts
+                </Button>
+              </Link>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +41,7 @@ function AdminTable({ posts, users }) {
           </tr>
         </tbody>
       </Table>
-    </div>
+    </motion.div>
   );
 }
 

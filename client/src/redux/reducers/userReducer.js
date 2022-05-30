@@ -1,19 +1,20 @@
-import { EDIT_USER } from "../types/userTypes"
+import { EDIT_USER } from "../types/userTypes";
 
 const initialState = {
-    name : "",
-    lastname : ""
-}
+  name: "",
+  lastname: "",
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-  case EDIT_USER:
+    case EDIT_USER:
       return {
-          ...state, name : payload, lastname : payload
-      }
-    
+        ...state,
+        name: payload,
+        lastname: payload,
+      };
 
-  default:
-    return state
+    default:
+      return state;
   }
-}
+};

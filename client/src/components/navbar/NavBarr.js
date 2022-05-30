@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/authActions";
 import alzaPic from "./AlzaLogonbg.png";
-
+import { motion } from "framer-motion";
 const NavBarr = () => {
   // take the initial state which is false
   const auth = useSelector((state) => state.authReducer.auth);
@@ -17,9 +17,20 @@ const NavBarr = () => {
   };
   return (
     <div>
-      <Navbar bg='light' variant='dark' fixed="top" className="navbarclass">
+      <Navbar bg='light' variant='dark' fixed='top' className='navbarclass'>
         <Container>
-          <img src={alzaPic} alt='' className='navbarLogo' />
+          <motion.img
+            src={alzaPic}
+            alt=''
+            className='navbarLogo'
+            animate={{ x: 20, y: -7 }}
+            whileHover={{ scale: 1.2, rotate: 360 }}
+            whileTap={{
+              scale: 0.8,
+              rotate: -90,
+              borderRadius: "100%",
+            }}
+          />
           <Nav className='me-auto'>
             {auth ? (
               <>

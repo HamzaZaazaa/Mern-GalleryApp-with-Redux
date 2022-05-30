@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./imagecard.css";
 import CommentBody from "./CommentBody";
+import { motion } from "framer-motion";
 
 function ImageCard({ getpost }) {
   const [comment, setComment] = useState("");
@@ -52,7 +53,15 @@ function ImageCard({ getpost }) {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div>
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ rotate: 360, scale: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      }}
+    >
       <div style={{ display: "flex" }}>
         <Card.Title style={{ marginLeft: "20%", color: "white" }}>
           {getpost.userId.name}
@@ -62,7 +71,9 @@ function ImageCard({ getpost }) {
         </Card.Title>
       </div>
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant='top' src={`uploads/${getpost.post}`} />
+        <motion.div whileHover={{ scale: 1.9 }} whileTap={{ scale: 0.9 }}>
+          <Card.Img variant='top' src={`uploads/${getpost.post}`} />
+        </motion.div>
         {/* Download button */}
         <Button variant='outline-info'>
           <a
@@ -106,7 +117,7 @@ function ImageCard({ getpost }) {
           </Button>
         </Card.Body>
       </Card>
-    </div>
+    </motion.div>
   );
 }
 
