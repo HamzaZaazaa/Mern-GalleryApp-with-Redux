@@ -24,17 +24,16 @@ function Admin() {
   }, []);
   return (
     <div>
-      <motion.h3
+      <motion.h2
         style={{
           textAlign: "center",
           fontFamily: "cursive",
           color: "white",
           marginTop: "5%",
         }}
-        animate={{ x: 10, y: 10, scale: 2.0 }}
       >
         Welcome Administrator
-      </motion.h3>
+      </motion.h2>
       <AdminTable users={users} posts={posts} />
       <Routes>
         <Route path='/allusers' element={<LinkTousers users={users} />} />

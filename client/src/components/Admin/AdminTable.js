@@ -5,16 +5,7 @@ import "./AdminTable.css";
 import { motion } from "framer-motion";
 function AdminTable({ posts, users }) {
   return (
-    <motion.div
-      className='adminTable'
-      drag
-      dragConstraints={{
-        top: -50,
-        left: -50,
-        right: 50,
-        bottom: 50,
-      }}
-    >
+    <motion.div className='adminTable'>
       <Table bordered>
         <thead>
           <tr>

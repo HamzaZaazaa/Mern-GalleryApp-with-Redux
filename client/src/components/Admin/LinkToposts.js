@@ -1,6 +1,5 @@
 import React from "react";
 import AdminCards from "./AdminCards";
-
 function LinkToposts({ posts }) {
   return (
     <div>

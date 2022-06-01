@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import ProfileCard from "./ProfileCard";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+
 function Profile() {
   // take user from reducer
   const user = useSelector((state) => state.authReducer.user);
@@ -56,15 +56,7 @@ function Profile() {
     localStorage.removeItem("token");
   };
   return (
-    <motion.div
-      drag
-      dragConstraints={{
-        top: -50,
-        left: -50,
-        right: 50,
-        bottom: 50,
-      }}
-    >
+    <div>
       <div className='row py-5 px-4 userprofile'>
         <div className='col-xl-4 col-md-6 col-sm-10 mx-auto'>
           <div className='bg-white shadow rounded overflow-hidden'>
@@ -136,7 +128,7 @@ function Profile() {
           <ProfileCard userpost={userpost} user={user} key={userpost._id} />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/actions/authActions";
-
 const Signup = () => {
   const [data, setData] = useState({
     name: "",

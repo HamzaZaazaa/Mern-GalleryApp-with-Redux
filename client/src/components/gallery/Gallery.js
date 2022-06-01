@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/actions/postActions";
-
+import { motion } from "framer-motion";
 const Gallery = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -58,7 +58,15 @@ const Gallery = () => {
     disptach(getPosts());
   }, []);
   return (
-    <div>
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ rotate: 360, scale: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      }}
+    >
       {user.role === 0 ? (
         <Button variant='info' onClick={handleShow} className='Modalbtn'>
           Upload A Picture
@@ -111,14 +119,17 @@ const Gallery = () => {
         onChange={(e) => setPostsearch(e.target.value)}
       />
       <div className='imgcontainer'>
-        {posts.filter((getpost) => {
-    return getpost.posterTitle
-      .toLowerCase()
-      .includes(postsearch.toLowerCase().trim())}).map((getpost) => (
-          <ImageCard getpost={getpost} key={getpost._id} />
-        ))}
+        {posts
+          .filter((getpost) => {
+            return getpost.posterTitle
+              .toLowerCase()
+              .includes(postsearch.toLowerCase().trim());
+          })
+          .map((getpost) => (
+            <ImageCard getpost={getpost} key={getpost._id} />
+          ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
