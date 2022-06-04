@@ -15,7 +15,7 @@ router.put("/upload", userAuth, upload.single("myPic"), async (req, res) => {
     await User.findByIdAndUpdate(req.user.id, {
       $set: { postTitle: req.file.filename },
     });
-    res.send("image uploaded");
+    res.status(200).send("image uploaded");
   } catch (error) {
     res.status(500).send("Server Error");
   }
@@ -39,7 +39,7 @@ router.put("/titleedit/:id", userAuth, async (req, res) => {
     });
     res.status(200).send("Title updated");
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send("Server Error");
   }
 });
 // Delete Poster
@@ -50,7 +50,7 @@ router.delete("/delpost/:id", userAuth, async (req, res) => {
     await Comment.deleteMany({ postId: id });
     res.status(200).send("poster Deleted");
   } catch (error) {
-    console.log("Server Error");
+    res.status(500).send("Server Error");
   }
 });
 // Delete user with his posts and comments

@@ -41,7 +41,7 @@ adminroute.delete("/admindelete/:id", userAuth, async (req, res) => {
     await Comment.deleteMany({ userId: id });
     res.status(200).send("User Deleted");
   } catch (error) {
-    console.log(error);
+    res.status(500).send("Server Error");
   }
 });
 
